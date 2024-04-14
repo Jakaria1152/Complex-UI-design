@@ -1,6 +1,9 @@
+import 'package:complex_ui_design/widget/header4homepage.dart';
 import 'package:complex_ui_design/widget/header1home.dart';
 import 'package:complex_ui_design/widget/header2_home.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '_header3_home.dart';
 import 'colors.dart'
@@ -24,65 +27,38 @@ class _HomePageState extends State<HomePage> {
           children: [
             header1home(),
             SizedBox(
-              height: 30,
+              height: 10,
             ),
             header2_home(),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             header3_home(),
-            SizedBox(
-              height: 5,
+
+            header4homepage(),
+
+            Row(
+              children: [
+                Text('Area of focus',style: TextStyle(fontSize: 25,fontWeight: FontWeight.w500,color: Colors.black),textAlign: TextAlign.start,),
+              ],
             ),
-            Container(
-              margin: EdgeInsets.only(top: 30),
-              height: 180,
-              width: MediaQuery.of(context).size.width,
-              child: Stack(
-                children: [
-                  Container(
-                    height: 120,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      image: DecorationImage(
-                        image: AssetImage("assets/img/background.jpg"),
-                        fit: BoxFit.fill    // fill dile image nosto na kore total height and width nibe
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 40,
-                          offset: Offset(8,10),
-                          color: color.AppColor.gredientsecond.withOpacity(0.3),
-
-
-                        ),
-                        BoxShadow(
-                          blurRadius: 20,
-                          offset: Offset(-1,-5),
-                          color: color.AppColor.gredientsecond.withOpacity(0.3),
-
-
-                        ),
-                      ]
-                    ),
-                  ),
-                  Container(
-                    height: 200,
-                    width: MediaQuery.of(context).size.width,
-margin: EdgeInsets.only(right: 200,bottom: 70),
-                    decoration: BoxDecoration(
-                      color: Colors.redAccent.withOpacity(0.4),
-                        borderRadius: BorderRadius.circular(20),
+            Expanded(
+              child: ListView.builder(shrinkWrap: true,itemCount: 4,itemBuilder: (context, index) {  // if miss expanded show render overflow error
+                return Row(
+                  children: [
+                    Container(
+                      height: 200,
+                      width: 170,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
                         image: DecorationImage(
-                            image: AssetImage("assets/img/boy run.jpg"),
-                            fit: BoxFit.fill    // fill dile image nosto na kore total height and width nibe
-                        ),
-
-                    ),
-                  )
-                ],
-              ),
+                          image: AssetImage('assets/img/ex1.jpg')
+                        )
+                      ),
+                    )
+                  ],
+                );
+              },),
             )
           ],
         ),

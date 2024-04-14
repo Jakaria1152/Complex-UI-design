@@ -11,7 +11,7 @@ class header3_home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 220,
+      height: 210,
       decoration: BoxDecoration(
           gradient: LinearGradient(colors: [
             color.AppColor.gredientfirst,
