@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:complex_ui_design/widget/header4homepage.dart';
 import 'package:complex_ui_design/widget/header1home.dart';
 import 'package:complex_ui_design/widget/header2_home.dart';
@@ -17,8 +19,21 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List info = [];
+  _initData(){
+  DefaultAssetBundle.of(context).loadString('json/info.json').then((value) {
+    info = json.decode(value);
+  });
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _initData();
+  }
   @override
   Widget build(BuildContext context) {
+    print('info length: ${info.length}');
     return Scaffold(
       backgroundColor: color.AppColor.whitecolor,
       body: Container(
@@ -43,17 +58,38 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             Expanded(
-              child: ListView.builder(shrinkWrap: true,itemCount: 4,itemBuilder: (context, index) {  // if miss expanded show render overflow error
+
+              child: ListView.builder(shrinkWrap: true,itemCount: info.length,itemBuilder: (context, index) {  // if miss expanded show render overflow error
                 return Row(
                   children: [
                     Container(
-                      height: 200,
-                      width: 170,
+                      height: 150,
+                      width: 120,
+                      padding: EdgeInsets.only(bottom: 5),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         image: DecorationImage(
-                          image: AssetImage('assets/img/ex1.jpg')
-                        )
+                          image: AssetImage(info[index]['img']),
+
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 3,
+                            offset: Offset(5,5),
+                            color: color.AppColor.gredientsecond.withOpacity(0.1)
+                          ),
+                          BoxShadow(
+                            blurRadius: 3,
+                            offset: Offset(-5,-5),
+                            color: color.AppColor.gredientsecond.withOpacity(0.1)
+                          ),
+                        ]
+                      ),
+                      child: Center(
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Text(info[index]['title'],style: TextStyle(fontSize: 20,color: Colors.blue),),
+                        ),
                       ),
                     )
                   ],
