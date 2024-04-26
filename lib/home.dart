@@ -70,6 +70,7 @@ class _HomePageState extends State<HomePage> {
                   removeTop: true,
                   context: context,
                   child: ListView.builder(shrinkWrap: true,
+                    physics: BouncingScrollPhysics(),
                     itemCount: info.length~/2, // i want entire data show 2 grid type horizontal
 
                     itemBuilder: (context, index) {  // if miss expanded show render overflow error
