@@ -5,6 +5,7 @@ import 'package:complex_ui_design/widget/header1home.dart';
 import 'package:complex_ui_design/widget/header2_home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 import '_header3_home.dart';
@@ -20,16 +21,20 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List info = [];
-  _initData(){
-  DefaultAssetBundle.of(context).loadString('json/info.json').then((value) {
-    info = json.decode(value);
-  });
+
+  Future<void> readLocalJson()async{ // this function load local json data. To woring list
+    final response = await rootBundle.loadString('json/info.json');
+    final data = await jsonDecode(response);
+    setState(() {
+      info = data;
+    });
   }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _initData();
+    readLocalJson(); // initially call to load data
   }
   @override
   Widget build(BuildContext context) {
