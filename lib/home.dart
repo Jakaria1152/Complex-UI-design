@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: color.AppColor.whitecolor,
       body: Container(
-        padding: EdgeInsets.only(top: 30, left: 30, right: 30),
+        padding: EdgeInsets.only(top: 20, left: 20, right: 20),
         child: Column(
           children: [
             header1home(),
@@ -75,14 +75,15 @@ class _HomePageState extends State<HomePage> {
                   return Row(
                     children: [
                       Container(
+                        margin: EdgeInsets.only(left: 30,bottom: 15),
                         height: 200,
-                        width: 170,
+                        width: (MediaQuery.of(context).size.width-90)/2, // use 90 beacuse left 30 middle 30 and right site 30 margin. Divide 2 beacuse each row i want two container
                         padding: EdgeInsets.only(bottom: 5),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           image: DecorationImage(
                             image: AssetImage(info[a]['img']),
-
+                  fit: BoxFit.cover
                           ),
                           boxShadow: [
                             BoxShadow(
@@ -105,14 +106,15 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       Container(
+                        margin: EdgeInsets.only(left: 30,bottom: 15),
                         height: 200,
-                        width: 170,
+                        width: (MediaQuery.of(context).size.width-90)/2,
                         padding: EdgeInsets.only(bottom: 5),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           image: DecorationImage(
                             image: AssetImage(info[b]['img']),
-
+                              fit: BoxFit.cover
                           ),
                           boxShadow: [
                             BoxShadow(
