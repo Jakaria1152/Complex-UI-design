@@ -66,79 +66,83 @@ class _HomePageState extends State<HomePage> {
 
               child: OverflowBox( //very useful overflowBox to solve render overflow error
                 maxWidth: MediaQuery.of(context).size.width, // design er width max width er beshi hoye gele aita use korle maxwidth er vitore niyte ashbe
-                child: ListView.builder(shrinkWrap: true,
-                  itemCount: info.length~/2, // i want entire data show 2 grid type horizontal
+                child: MediaQuery.removePadding( // this MediaQuery.removePadding use for remove unwanted padding. I use this for remove top padding
+                  removeTop: true,
+                  context: context,
+                  child: ListView.builder(shrinkWrap: true,
+                    itemCount: info.length~/2, // i want entire data show 2 grid type horizontal
 
-                  itemBuilder: (context, index) {  // if miss expanded show render overflow error
-                    int a = 2*index; // 0,2,4,6
-                    int b = 2*index+1; // 1,3,5,7
-                  return Row(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(left: 30,bottom: 15),
-                        height: 200,
-                        width: (MediaQuery.of(context).size.width-90)/2, // use 90 beacuse left 30 middle 30 and right site 30 margin. Divide 2 beacuse each row i want two container
-                        padding: EdgeInsets.only(bottom: 5),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          image: DecorationImage(
-                            image: AssetImage(info[a]['img']),
-                  fit: BoxFit.cover
+                    itemBuilder: (context, index) {  // if miss expanded show render overflow error
+                      int a = 2*index; // 0,2,4,6
+                      int b = 2*index+1; // 1,3,5,7
+                    return Row(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(left: 30,bottom: 15,top: 10),
+                          height: 200,
+                          width: (MediaQuery.of(context).size.width-90)/2, // use 90 beacuse left 30 middle 30 and right site 30 margin. Divide 2 beacuse each row i want two container
+                          padding: EdgeInsets.only(bottom: 5),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            image: DecorationImage(
+                              image: AssetImage(info[a]['img']),
+                    fit: BoxFit.cover
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 3,
+                                offset: Offset(5,5),
+                                color: color.AppColor.gredientsecond.withOpacity(0.1)
+                              ),
+                              BoxShadow(
+                                blurRadius: 3,
+                                offset: Offset(-5,-5),
+                                color: color.AppColor.gredientsecond.withOpacity(0.1)
+                              ),
+                            ]
                           ),
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 3,
-                              offset: Offset(5,5),
-                              color: color.AppColor.gredientsecond.withOpacity(0.1)
+                          child: Center(
+                            child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Text(info[a]['title'],style: TextStyle(fontSize: 20,color: Colors.blue),),
                             ),
-                            BoxShadow(
-                              blurRadius: 3,
-                              offset: Offset(-5,-5),
-                              color: color.AppColor.gredientsecond.withOpacity(0.1)
-                            ),
-                          ]
-                        ),
-                        child: Center(
-                          child: Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Text(info[a]['title'],style: TextStyle(fontSize: 20,color: Colors.blue),),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(left: 30,bottom: 15),
-                        height: 200,
-                        width: (MediaQuery.of(context).size.width-90)/2,
-                        padding: EdgeInsets.only(bottom: 5),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          image: DecorationImage(
-                            image: AssetImage(info[b]['img']),
-                              fit: BoxFit.cover
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 3,
-                              offset: Offset(5,5),
-                              color: color.AppColor.gredientsecond.withOpacity(0.1)
-                            ),
-                            BoxShadow(
-                              blurRadius: 3,
-                              offset: Offset(-5,-5),
-                              color: color.AppColor.gredientsecond.withOpacity(0.1)
-                            ),
-                          ]
-                        ),
-                        child: Center(
-                          child: Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Text(info[b]['title'],style: TextStyle(fontSize: 20,color: Colors.blue),),
                           ),
                         ),
-                      ),
-                    ],
-                  );
-                },),
+                        Container(
+                          margin: EdgeInsets.only(left: 30,bottom: 15,top: 10),
+                          height: 200,
+                          width: (MediaQuery.of(context).size.width-90)/2,
+                          padding: EdgeInsets.only(bottom: 5),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            image: DecorationImage(
+                              image: AssetImage(info[b]['img']),
+                                fit: BoxFit.cover
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 3,
+                                offset: Offset(5,5),
+                                color: color.AppColor.gredientsecond.withOpacity(0.1)
+                              ),
+                              BoxShadow(
+                                blurRadius: 3,
+                                offset: Offset(-5,-5),
+                                color: color.AppColor.gredientsecond.withOpacity(0.1)
+                              ),
+                            ]
+                          ),
+                          child: Center(
+                            child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Text(info[b]['title'],style: TextStyle(fontSize: 20,color: Colors.blue),),
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  },),
+                ),
               ),
             )
           ],
