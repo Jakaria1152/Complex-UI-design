@@ -38,11 +38,11 @@ class _HomePageState extends State<HomePage> {
   }
   @override
   Widget build(BuildContext context) {
-    print('info length: ${info.length}');
+
     return Scaffold(
       backgroundColor: color.AppColor.whitecolor,
       body: Container(
-        padding: EdgeInsets.only(top: 70, left: 30, right: 30),
+        padding: EdgeInsets.only(top: 30, left: 30, right: 30),
         child: Column(
           children: [
             header1home(),
@@ -64,42 +64,80 @@ class _HomePageState extends State<HomePage> {
             ),
             Expanded(
 
-              child: ListView.builder(shrinkWrap: true,itemCount: info.length,itemBuilder: (context, index) {  // if miss expanded show render overflow error
-                return Row(
-                  children: [
-                    Container(
-                      height: 150,
-                      width: 120,
-                      padding: EdgeInsets.only(bottom: 5),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        image: DecorationImage(
-                          image: AssetImage(info[index]['img']),
+              child: OverflowBox( //very useful overflowBox to solve render overflow error
+                maxWidth: MediaQuery.of(context).size.width, // design er width max width er beshi hoye gele aita use korle maxwidth er vitore niyte ashbe
+                child: ListView.builder(shrinkWrap: true,
+                  itemCount: info.length~/2, // i want entire data show 2 grid type horizontal
 
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 3,
-                            offset: Offset(5,5),
-                            color: color.AppColor.gredientsecond.withOpacity(0.1)
+                  itemBuilder: (context, index) {  // if miss expanded show render overflow error
+                    int a = 2*index; // 0,2,4,6
+                    int b = 2*index+1; // 1,3,5,7
+                  return Row(
+                    children: [
+                      Container(
+                        height: 200,
+                        width: 170,
+                        padding: EdgeInsets.only(bottom: 5),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          image: DecorationImage(
+                            image: AssetImage(info[a]['img']),
+
                           ),
-                          BoxShadow(
-                            blurRadius: 3,
-                            offset: Offset(-5,-5),
-                            color: color.AppColor.gredientsecond.withOpacity(0.1)
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 3,
+                              offset: Offset(5,5),
+                              color: color.AppColor.gredientsecond.withOpacity(0.1)
+                            ),
+                            BoxShadow(
+                              blurRadius: 3,
+                              offset: Offset(-5,-5),
+                              color: color.AppColor.gredientsecond.withOpacity(0.1)
+                            ),
+                          ]
+                        ),
+                        child: Center(
+                          child: Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Text(info[a]['title'],style: TextStyle(fontSize: 20,color: Colors.blue),),
                           ),
-                        ]
-                      ),
-                      child: Center(
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Text(info[index]['title'],style: TextStyle(fontSize: 20,color: Colors.blue),),
                         ),
                       ),
-                    )
-                  ],
-                );
-              },),
+                      Container(
+                        height: 200,
+                        width: 170,
+                        padding: EdgeInsets.only(bottom: 5),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          image: DecorationImage(
+                            image: AssetImage(info[b]['img']),
+
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 3,
+                              offset: Offset(5,5),
+                              color: color.AppColor.gredientsecond.withOpacity(0.1)
+                            ),
+                            BoxShadow(
+                              blurRadius: 3,
+                              offset: Offset(-5,-5),
+                              color: color.AppColor.gredientsecond.withOpacity(0.1)
+                            ),
+                          ]
+                        ),
+                        child: Center(
+                          child: Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Text(info[b]['title'],style: TextStyle(fontSize: 20,color: Colors.blue),),
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },),
+              ),
             )
           ],
         ),
