@@ -36,7 +36,37 @@ class ExercisePage extends StatelessWidget {
                 ],
               ),
             ),
-          )
+          ),
+          SizedBox(height: 15,),
+          Expanded(child: ListView.builder(itemCount: 10,itemBuilder: (context, index) {
+            return Container(
+              color: Colors.white,
+              child: Column(
+                children: [
+              Row(
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(8),
+                    height: 150,
+                    width: 150,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black,width: 1.2),
+                      image: DecorationImage(
+                        image: AssetImage('assets/img/ex6.png')
+                      ),
+
+                    ),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Icon(Icons.play_circle,size: 38,color: Colors.pink,),
+                    ),
+                  )
+                ],
+              )
+                ],
+              ),
+            );
+          },))
         ],
       ),
     );
