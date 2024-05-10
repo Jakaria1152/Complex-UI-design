@@ -1,3 +1,5 @@
 this is sample text
 
-This text writtten by remote repository github
+This text writtten by remote repository github.
+
+This text is written by feature1 branch
