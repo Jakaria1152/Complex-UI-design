@@ -50,7 +50,7 @@ class ExercisePage extends StatelessWidget {
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.black,width: 1.2),
                         image: DecorationImage(
-                          image: AssetImage('assets/img/ex6.png')
+                          image: AssetImage('assets/img/ex4.jpg')
                         ),
 
                       ),
